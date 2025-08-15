@@ -1,0 +1,42 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ai-chat-service",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-08-13",
+	"observability": {
+		"enabled": true
+	},
+	/**
+	 * Environment Variables for development
+	 * Note: Use secrets for production deployment
+	 */
+	"vars": {
+		"OPENAI_MODEL": "gpt-3.5-turbo",
+		"MAX_TOKENS": "1000",
+		"TEMPERATURE": "0.7",
+		"ENVIRONMENT": "development"
+	},
+	/**
+	 * Development configuration
+	 */
+	"dev": {
+		"port": 8787,
+		"local_protocol": "http"
+	},
+	/**
+	 * Smart Placement for better performance
+	 */
+	"placement": { "mode": "smart" }
+	/**
+	 * Note: For production, set OPENAI_API_KEY as a secret:
+	 * wrangler secret put OPENAI_API_KEY
+	 * 
+	 * Other secrets you might want to configure:
+	 * - OPENAI_API_KEY: Your OpenAI API key
+	 * - ALLOWED_ORIGINS: Comma-separated list of allowed origins for CORS
+	 */
+}
