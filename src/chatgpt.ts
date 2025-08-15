@@ -58,6 +58,13 @@ export class ChatGPTService {
       systemPrompt?: string;
     }
   ): Promise<string> {
+    // Debug: Log API key status
+    console.log('API Key status:', {
+      hasKey: !!this.apiKey,
+      keyLength: this.apiKey ? this.apiKey.length : 0,
+      keyPrefix: this.apiKey ? this.apiKey.substring(0, 10) + '...' : 'none'
+    });
+    
     // If no API key is provided, return a mock response
     if (!this.apiKey || this.apiKey.trim() === '') {
       console.warn('ChatGPT API key not provided, returning mock response');
